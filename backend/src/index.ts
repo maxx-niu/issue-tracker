@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 import db from "./database";
 import { Issue, IssueDetails } from "./types";
@@ -6,6 +7,7 @@ import { getFormattedDate } from "./utils";
 
 dotenv.config();
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 const PORT = process.env.PORT;
@@ -268,17 +270,25 @@ app.patch("/api/issues/:id", (req: Request, res: Response) => {
             res.status(200).json({
                 message: "New status identical to old one. No updates were performed",
                 wasUpdated: false,
-                updateTimeStamp: null
+                updateTimeStamp: null,
+                issue: oldIssue
             });
             return;
         }
+
         const updateTimeStamp = getFormattedDate();
         const updateStmt = db.prepare("UPDATE issues SET status = ?, updated_at = ? WHERE id = ?");
         updateStmt.run(reqStatus, updateTimeStamp, id);
+
+        // return the updated issue
+        const updatedIssueStmt = db.prepare("SELECT * FROM issues WHERE id = ?");
+        const updatedIssue = updatedIssueStmt.get(id) as Issue;
+
         res.status(200).json({
             message: "Status was updated successfully",
             wasUpdated: true,
-            updateTimeStamp
+            updateTimeStamp,
+            issue: updatedIssue
         });
     } catch (error) {
         res.status(500).json({

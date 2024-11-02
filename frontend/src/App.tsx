@@ -1,11 +1,16 @@
 import React from 'react';
 import IssueList from './components/IssueList';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import IssueViewer from './components/IssueViewer';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <IssueList/>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<IssueList />} />
+        <Route path="/issues/:id" element={<IssueViewer/>} />
+      </Routes>
+    </Router>
   );
 }
 
