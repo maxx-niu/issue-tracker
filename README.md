@@ -1,4 +1,4 @@
-# Full-stack issue tracker web application for Faisal Usmani.
+# Full-stack issue tracker web application for FUsmani.
 
 ## Stack Used
 
