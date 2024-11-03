@@ -1,4 +1,11 @@
-Issue tracker web application for Faisal Usmani
+# Full-stack issue tracker web application for Faisal Usmani.
+
+## Stack Used
+
+- **Frontend**: React, TypeScript, Bootstrap
+- **Backend**: Node.js, Express, SQLite
+- **Database**: SQLite
+- **Styling**: CSS, Bootstrap
 
 ## Getting Started
 
