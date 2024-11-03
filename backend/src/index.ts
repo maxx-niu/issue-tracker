@@ -1,19 +1,16 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import db from "./database";
 import { Issue, IssueDetails } from "./types";
 import { getFormattedDate } from "./utils";
 
-dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.PORT;
+const PORT = 3000;
 const VALIDSTATUSES = ["Open", "In Progress", "Resolved"];
 const VALIDPRIORITIES = ["Low", "Medium", "High"];
-const REQUESTLIMIT = 100;
 
 app.listen(PORT, () => {
     console.log("Server running at PORT: ", PORT);
@@ -231,7 +228,7 @@ app.patch("/api/issues/:id", (req: Request, res: Response) => {
         }
 
         const { newStatus } = req.body;
-        if (typeof newStatus !== 'string') {
+        if (typeof newStatus !== "string") {
             res.status(400).json({message: "Status must be a string"});
             return;
         }
@@ -295,7 +292,7 @@ app.patch("/api/issues/:id", (req: Request, res: Response) => {
  * 
  * Success Response:
  * - 200 OK: Issue deleted successfully
- *  - message (string): 'Issue deleted successfully'
+ *  - message (string): "Issue deleted successfully"
  * 
  * Error Response:
  * - 400 Bad Request: If the ID is invalid or the issue was not found.
@@ -314,7 +311,7 @@ app.delete("/api/issues/:id", (req: Request, res: Response) => {
         const stmt = db.prepare("DELETE FROM issues WHERE id = ?");
         const result = stmt.run(id);
         if (result.changes > 0) {
-            res.status(200).json({ message: 'Issue deleted successfully' });
+            res.status(200).json({ message: "Issue deleted successfully" });
         } else {
             res.status(404).json({ message: `Issue ID ${id} not found` });
         }

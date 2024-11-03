@@ -1,4 +1,3 @@
-import React from 'react';
 import { FC } from 'react';
 import '../styles/AddIssueButton.css';
 import { Link } from 'react-router-dom';
