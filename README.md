@@ -40,7 +40,7 @@
    npm run serve
    ```
 
-2. Start the frontend development server:
+2. Open another terminal and start the frontend development server:
 
    ```sh
    cd frontend
