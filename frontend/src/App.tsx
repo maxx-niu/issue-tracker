@@ -1,8 +1,8 @@
-import React from 'react';
-import IssueList from './components/IssueList';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import IssueViewer from './components/IssueViewer';
-import IssueCreator from './components/IssueCreator';
+import React from "react";
+import IssueList from "./components/IssueList";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import IssueViewer from "./components/IssueViewer";
+import IssueCreator from "./components/IssueCreator";
 
 const App = () => {
   return (

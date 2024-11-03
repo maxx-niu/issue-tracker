@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { Dropdown, DropdownButton } from 'react-bootstrap';
+import { Dropdown, DropdownButton } from "react-bootstrap";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import useFetchIssue from "../hooks/useFetchIssue";
 import { convertToUserTime } from "../utils";
@@ -60,7 +60,7 @@ const IssueViewer: FC = () => {
             }
 
             alert("Issue deleted successfully");
-            navigate('/');
+            navigate("/");
         } catch (err) {
             console.error(err);
             alert("Error deleting issue");
@@ -74,7 +74,7 @@ const IssueViewer: FC = () => {
     const isStatusChanged = issue.status !== selectValue;
 
     return (
-         <div className="container-fluid d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+         <div className="container-fluid d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
             <Link to="/" className="btn btn-primary back-button">
                 <i className="bi bi-chevron-left chevron-left"></i>Back to issues
             </Link>

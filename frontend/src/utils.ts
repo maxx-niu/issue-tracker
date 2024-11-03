@@ -1,19 +1,19 @@
 export const convertToUserTime = (dateTimeStr: string): string => {
-    const date = new Date(dateTimeStr.replace(' ', 'T') + 'Z');
+    const date = new Date(dateTimeStr.replace(" ", "T") + "Z");
 
     if (isNaN(date.getTime())) {
-        throw new Error('Invalid date format');
+        throw new Error("Invalid date format");
     }
 
     const options: Intl.DateTimeFormatOptions = {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
         hour12: false,
-        timeZoneName: 'short'
+        timeZoneName: "short"
     };
 
     return new Intl.DateTimeFormat(undefined, options).format(date);
