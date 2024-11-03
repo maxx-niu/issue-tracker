@@ -19,8 +19,8 @@
 1. Clone the repository:
 
    ```sh
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone https://github.com/maxx-niu/issue-tracker.git
+   cd issue-tracker
    ```
 
 2. Install dependencies for both backend and frontend:
