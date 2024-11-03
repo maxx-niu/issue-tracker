@@ -44,7 +44,7 @@
 
    ```sh
    cd frontend
-   npm start
+   npm run start
    ```
 
 3. Open your browser and navigate to `http://localhost:3001` to view the application (if you are not automatically taken there).
