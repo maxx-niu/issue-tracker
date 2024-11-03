@@ -46,28 +46,14 @@ app.listen(PORT, () => {
  */
 app.get("/api/issues", (req: Request, res: Response) => { 
     try {
-        const page = parseInt(req.query.page as string) || 1;
-        const limit = parseInt(req.query.limit as string) || 25;
-        if (limit > REQUESTLIMIT){
-            res.status(400).json({message: "Too many issues requested"});
-            return;
-        }
-        const offset = (page - 1) * limit;
-
-        const stmt = db.prepare("SELECT * FROM issues LIMIT ? OFFSET ?");
-        const issues: Issue[] = stmt.all(limit, offset) as Issue[];
+        const stmt = db.prepare("SELECT * FROM issues");
+        const issues: Issue[] = stmt.all() as Issue[];
 
         const countStmt = db.prepare("SELECT COUNT(*) AS count FROM issues");
         const totalCount = (countStmt.get() as { count: number }).count;
 
         res.status(200).json({
-            issues,
-            pagination: {
-                page,
-                pageLimit: limit,
-                totalCount,
-                totalPages: Math.ceil(totalCount / limit)
-            }
+            issues
         });
     } catch (error) {
         res.status(500).json({ 
@@ -119,7 +105,8 @@ app.get("/api/issues/:id", (req: Request, res: Response) => {
 /**
  * POST /api/issues
  * 
- * Creates a new issue by writing to local DB.
+ * Creates a new issue by writing to local DB. The created date will be
+ * inserted in UTC time
  * 
  * Request Body:
  * - title (string): Required. The title of the issue.

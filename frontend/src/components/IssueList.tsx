@@ -2,6 +2,7 @@ import { Issue } from '../types';
 import { FC } from 'react';
 import useFetchIssues from '../hooks/useFetchIssues';
 import IssueCard from './IssueCard';
+import AddIssueButton from './AddIssueButton';
 
 
 const IssueList: FC = () => {
@@ -15,6 +16,7 @@ const IssueList: FC = () => {
     const resolvedIssues = issues.filter((issue: Issue) => issue.status === 'Resolved');
     
     return (
+      <>
         <div className='container-fluid px-4 pt-3'>
             <div className="row">
                 <div className="col-md-4">
@@ -43,6 +45,8 @@ const IssueList: FC = () => {
                 </div>
             </div>
         </div>
+        <AddIssueButton />
+      </>
     );
 };
 
