@@ -1,4 +1,4 @@
-# Full-stack issue tracker web application for FUsmani.
+# Full-stack issue tracker web application
 
 ## Stack Used
 
